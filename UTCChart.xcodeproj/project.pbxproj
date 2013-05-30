@@ -24,6 +24,7 @@
 		4E63F4FF16BF86E400967A8D /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E63F4FE16BF86E400967A8D /* Default-Landscape~ipad.png */; };
 		4E63F50116BF86E900967A8D /* Default-Landscape@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E63F50016BF86E900967A8D /* Default-Landscape@2x~ipad.png */; };
 		4E95FCA0174C8B97007043D1 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E95FC9F174C8B97007043D1 /* Security.framework */; };
+		4E9FAA0C1757C39300FF1D99 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E9FAA0B1757C39300FF1D99 /* Crashlytics.framework */; };
 		4EA021FF169AA5C9006EEE52 /* icon_iphone_app.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EA021F9169AA5C9006EEE52 /* icon_iphone_app.png */; };
 		4EA02200169AA5C9006EEE52 /* icon_iphone_app@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EA021FA169AA5C9006EEE52 /* icon_iphone_app@2x.png */; };
 		4EA02201169AA5C9006EEE52 /* icon_iphone_spotlight.png in Resources */ = {isa = PBXBuildFile; fileRef = 4EA021FB169AA5C9006EEE52 /* icon_iphone_spotlight.png */; };
@@ -68,6 +69,7 @@
 		4E63F4FE16BF86E400967A8D /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Landscape~ipad.png"; path = "../Default-Landscape~ipad.png"; sourceTree = "<group>"; };
 		4E63F50016BF86E900967A8D /* Default-Landscape@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Landscape@2x~ipad.png"; path = "../Default-Landscape@2x~ipad.png"; sourceTree = "<group>"; };
 		4E95FC9F174C8B97007043D1 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		4E9FAA0B1757C39300FF1D99 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		4EA021F9169AA5C9006EEE52 /* icon_iphone_app.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_iphone_app.png; sourceTree = "<group>"; };
 		4EA021FA169AA5C9006EEE52 /* icon_iphone_app@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_iphone_app@2x.png"; sourceTree = "<group>"; };
 		4EA021FB169AA5C9006EEE52 /* icon_iphone_spotlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_iphone_spotlight.png; sourceTree = "<group>"; };
@@ -113,6 +115,7 @@
 				4EF3C2AA165B5BEF009CA540 /* Foundation.framework in Frameworks */,
 				4EF3C2AC165B5BEF009CA540 /* CoreGraphics.framework in Frameworks */,
 				0C9D6AC606534034BEC00B1D /* libPods.a in Frameworks */,
+				4E9FAA0C1757C39300FF1D99 /* Crashlytics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -140,6 +143,7 @@
 		4EF3C2A6165B5BEF009CA540 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4E9FAA0B1757C39300FF1D99 /* Crashlytics.framework */,
 				4E95FC9F174C8B97007043D1 /* Security.framework */,
 				4E094DEB1744A08300FFB403 /* StoreKit.framework */,
 				4E0D11361694141C0077CB17 /* MessageUI.framework */,
@@ -219,6 +223,7 @@
 				4EF3C2A0165B5BEF009CA540 /* Frameworks */,
 				4EF3C2A1165B5BEF009CA540 /* Resources */,
 				01923983EA184581AE6920D2 /* Copy Pods Resources */,
+				4E9FAA0A1757C31200FF1D99 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -314,6 +319,19 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+		};
+		4E9FAA0A1757C31200FF1D99 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Crashlytics.framework/run eff5e17613e3f6f38caa58d00407c55e19c69816";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -421,6 +439,10 @@
 			baseConfigurationReference = 8994BE1BDB3945439846883E /* Pods.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer: Michael Luton (NVWQ37C5ZM)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "UTCChart/UTCChart-Prefix.pch";
 				INFOPLIST_FILE = "UTCChart/UTCChart-Info.plist";
@@ -438,6 +460,10 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Michael Luton (54GAJ5294V)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Michael Luton (54GAJ5294V)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "UTCChart/UTCChart-Prefix.pch";
 				INFOPLIST_FILE = "UTCChart/UTCChart-Info.plist";

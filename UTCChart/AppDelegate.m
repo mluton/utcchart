@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "MPLIAPGateway.h"
+#import <Crashlytics/Crashlytics.h>
 
 @implementation AppDelegate
 
@@ -15,6 +16,7 @@
 {
     [MPLIAPGateway sharedGateway];
     [Flurry startSession:@"BXMJT8RQ58X7BHN38SKH"];
+    [Crashlytics startWithAPIKey:@"eff5e17613e3f6f38caa58d00407c55e19c69816"];
     return YES;
 }
 							
